@@ -1,0 +1,344 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const navLinks = [
+  { label: 'Features', href: '#features' },
+  { label: 'Pricing', href: '#pricing' },
+  { label: 'Testimonials', href: '#testimonials' },
+];
+
+const logos = ['Stripe', 'Vercel', 'Linear', 'Notion', 'Figma', 'Shopify', 'Atlassian', 'Slack'];
+
+const features = [
+  { icon: 'board', title: 'Task Boards', desc: 'Kanban, list, or timeline views. Drag, drop, and ship.', color: 'violet' },
+  { icon: 'doc', title: 'Real-Time Docs', desc: 'Collaborative documents with version history and comments.', color: 'teal' },
+  { icon: 'chat', title: 'Team Chat', desc: 'Threaded conversations linked to tasks and projects.', color: 'violet' },
+  { icon: 'auto', title: 'Automations', desc: 'If-then workflows that eliminate repetitive busywork.', color: 'teal' },
+  { icon: 'plug', title: 'Integrations', desc: 'Connect GitHub, Figma, Slack, and 100+ more tools.', color: 'violet' },
+  { icon: 'chart', title: 'Analytics', desc: 'Track velocity, bottlenecks, and team workload at a glance.', color: 'teal' },
+];
+
+const tabs = [
+  { id: 'boards', label: 'Boards', desc: 'Visualise your workflow with flexible Kanban boards. Drag tasks between columns, set WIP limits, and customise views per team or project. Switch between board, list, and timeline in one click.', image: 'https://images.unsplash.com/photo-1754039985001-ccafee437736?w=1200&h=700&fit=crop&q=80', alt: 'Flowline Kanban board view showing project tasks' },
+  { id: 'docs', label: 'Docs', desc: 'Write specs, meeting notes, and project wikis — all inside Flowline. Real-time collaboration, inline comments, slash commands, and version history keep your team aligned.', image: 'https://images.unsplash.com/photo-1754039984985-ef607d80113a?w=1200&h=700&fit=crop&q=80', alt: 'Flowline docs editor with collaborative editing' },
+  { id: 'analytics', label: 'Analytics', desc: 'Understand where work gets stuck. Track cycle time, team velocity, and workload distribution with visual dashboards. Export reports for stakeholders in one click.', image: 'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=1200&h=700&fit=crop&q=80', alt: 'Flowline analytics dashboard with charts' },
+];
+
+const pricingTiers = [
+  {
+    name: 'Free',
+    price: '$0',
+    period: '/month',
+    desc: 'For individuals and small teams getting started.',
+    features: ['Up to 5 users', '3 projects', '1GB storage', 'Community support', 'Basic integrations'],
+    cta: 'Get Started',
+    popular: false,
+  },
+  {
+    name: 'Pro',
+    price: '$12',
+    period: '/user/month',
+    desc: 'For growing teams that need more power.',
+    features: ['Unlimited users & projects', '100GB storage', 'Priority support', 'Automations', 'Advanced analytics', 'Custom fields', 'Guest access'],
+    cta: 'Start Free Trial',
+    popular: true,
+  },
+  {
+    name: 'Enterprise',
+    price: 'Custom',
+    period: '',
+    desc: 'For organisations with advanced needs.',
+    features: ['Everything in Pro', 'SSO & SAML', 'Dedicated account manager', '99.99% SLA', 'Custom integrations', 'Audit logs', 'Advanced permissions'],
+    cta: 'Contact Sales',
+    popular: false,
+  },
+];
+
+const testimonials = [
+  { quote: 'Flowline replaced three tools for us — task management, docs, and standups. Our team ships 40% faster now.', name: 'Marcus Chen', title: 'Engineering Lead', company: 'Nimbus Labs', avatar: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=80&h=80&fit=crop&q=80' },
+  { quote: 'The automations alone saved us 10 hours a week. We set up workflows once and now everything just flows.', name: 'Sarah Okafor', title: 'Head of Product', company: 'Meridian', avatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=80&h=80&fit=crop&q=80' },
+  { quote: 'Finally, a PM tool that doesn\'t feel like it was designed in 2010. Clean, fast, and our team actually enjoys using it.', name: 'James Whitfield', title: 'CTO', company: 'Vanguard Digital', avatar: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=80&h=80&fit=crop&q=80' },
+];
+
+const footerCols = [
+  { heading: 'Product', links: ['Features', 'Pricing', 'Integrations', 'Changelog'] },
+  { heading: 'Company', links: ['About', 'Blog', 'Careers', 'Contact'] },
+  { heading: 'Resources', links: ['Docs', 'API', 'Status', 'Community'] },
+  { heading: 'Legal', links: ['Privacy', 'Terms', 'Security'] },
+];
+---
+
+<Layout title="Flowline — Project Management That Flows">
+
+  <!-- ═══ NAV ═══ -->
+  <nav class="nav-saas" id="main-nav">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10">
+      <div class="flex items-center justify-between h-16">
+        <a href="#" class="text-lg font-bold tracking-tight flex items-center gap-2">
+          <svg width="24" height="24" viewBox="0 0 32 32"><rect width="32" height="32" rx="8" fill="#8B5CF6"/><path d="M8 16h6l3-6 3 10 3-4h4" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Flowline
+        </a>
+        <div class="hidden md:flex items-center gap-8">
+          {navLinks.map(l => <a href={l.href} class="nav-link-saas">{l.label}</a>)}
+          <a href="#pricing" class="btn-gradient text-sm py-2 px-5">Start Free Trial</a>
+        </div>
+        <button class="md:hidden p-2 text-text-secondary" id="mobile-menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="mobile-menu-saas md:hidden" id="mobile-menu">
+        <div class="pb-4 flex flex-col gap-3">
+          {navLinks.map(l => <a href={l.href} class="nav-link-saas py-2">{l.label}</a>)}
+          <a href="#pricing" class="btn-gradient text-sm py-2 px-5 text-center mt-2">Start Free Trial</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+  <!-- ═══ HERO ═══ -->
+  <section class="relative pt-32 pb-20 lg:pt-44 lg:pb-32 overflow-hidden">
+    <div class="gradient-mesh"></div>
+    <div class="relative max-w-7xl mx-auto px-6 lg:px-10">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.1] mb-6 reveal">
+          Project Management<br/>That <span class="bg-gradient-to-r from-violet to-teal bg-clip-text text-transparent">Flows</span>
+        </h1>
+        <p class="text-lg md:text-xl text-text-secondary max-w-2xl mx-auto mb-10 reveal" style="transition-delay: 0.1s">
+          Flowline brings your tasks, docs, and team communication into one seamless workspace. Built for teams that move fast.
+        </p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6 reveal" style="transition-delay: 0.2s">
+          <a href="#pricing" class="btn-gradient">Start Free Trial</a>
+          <a href="#showcase" class="btn-ghost">Watch Demo</a>
+        </div>
+        <p class="text-sm text-text-tertiary reveal" style="transition-delay: 0.3s">No credit card required · Free for up to 5 users</p>
+      </div>
+
+      <!-- Product screenshot -->
+      <div class="product-mockup reveal" style="transition-delay: 0.3s">
+        <img
+          src="https://images.unsplash.com/photo-1754039985001-ccafee437736?w=1400&h=800&fit=crop&q=80"
+          alt="Flowline dashboard showing project board with tasks and team activity"
+          class="w-full h-auto"
+          width="1400"
+          height="800"
+          loading="eager"
+          decoding="async"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ LOGOS ═══ -->
+  <section class="py-16 border-t border-b border-border">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10">
+      <p class="text-center text-sm text-text-tertiary mb-8 reveal">Trusted by teams at</p>
+      <div class="flex flex-wrap items-center justify-center gap-4 reveal" style="transition-delay: 0.1s">
+        {logos.map(name => (
+          <span class="logo-placeholder">{name}</span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FEATURES ═══ -->
+  <section id="features" class="py-24 lg:py-32">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10">
+      <div class="text-center mb-16 reveal">
+        <p class="text-sm font-semibold text-violet tracking-wider uppercase mb-4">Features</p>
+        <h2 class="text-3xl md:text-5xl font-bold tracking-tight">Everything your team needs</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {features.map((f, i) => (
+          <div class="glass-card p-8 reveal" style={`transition-delay: ${i * 0.08}s`}>
+            <div class={`feature-icon ${f.color}`}>
+              {f.icon === 'board' && <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>}
+              {f.icon === 'doc' && <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>}
+              {f.icon === 'chat' && <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>}
+              {f.icon === 'auto' && <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg>}
+              {f.icon === 'plug' && <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>}
+              {f.icon === 'chart' && <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>}
+            </div>
+            <h3 class="text-lg font-semibold mb-2">{f.title}</h3>
+            <p class="text-sm text-text-secondary leading-relaxed">{f.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PRODUCT SHOWCASE ═══ -->
+  <section id="showcase" class="py-24 lg:py-32 dot-grid">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10">
+      <div class="text-center mb-12 reveal">
+        <p class="text-sm font-semibold text-teal tracking-wider uppercase mb-4">Product</p>
+        <h2 class="text-3xl md:text-5xl font-bold tracking-tight">See it in action</h2>
+      </div>
+
+      <!-- Tabs -->
+      <div class="flex justify-center gap-3 mb-12 reveal" style="transition-delay: 0.1s">
+        {tabs.map((t, i) => (
+          <button class={`tab-btn ${i === 0 ? 'active' : ''}`} data-tab={t.id}>{t.label}</button>
+        ))}
+      </div>
+
+      <!-- Tab content -->
+      <div class="reveal" style="transition-delay: 0.2s">
+        {tabs.map((t, i) => (
+          <div class={`tab-content ${i === 0 ? 'active' : ''}`} data-tab-content={t.id}>
+            <div class="product-mockup mb-8">
+              <img src={t.image} alt={t.alt} class="w-full h-auto" width="1200" height="700" loading="lazy" decoding="async" />
+            </div>
+            <p class="text-center text-text-secondary max-w-2xl mx-auto leading-relaxed">{t.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PRICING ═══ -->
+  <section id="pricing" class="py-24 lg:py-32">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10">
+      <div class="text-center mb-16 reveal">
+        <p class="text-sm font-semibold text-violet tracking-wider uppercase mb-4">Pricing</p>
+        <h2 class="text-3xl md:text-5xl font-bold tracking-tight">Simple, transparent pricing</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-5xl mx-auto">
+        {pricingTiers.map((tier, i) => (
+          <div class={`pricing-card reveal ${tier.popular ? 'popular' : ''}`} style={`transition-delay: ${i * 0.1}s`}>
+            {tier.popular && <span class="popular-badge">Most Popular</span>}
+            <h3 class="text-lg font-semibold mb-2">{tier.name}</h3>
+            <div class="flex items-baseline gap-1 mb-2">
+              <span class="text-4xl font-bold">{tier.price}</span>
+              {tier.period && <span class="text-text-secondary text-sm">{tier.period}</span>}
+            </div>
+            <p class="text-sm text-text-secondary mb-8">{tier.desc}</p>
+            <ul class="space-y-3 mb-8">
+              {tier.features.map(f => (
+                <li class="pricing-feature">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  {f}
+                </li>
+              ))}
+            </ul>
+            <a href="#" class={tier.popular ? 'btn-gradient w-full text-center' : 'btn-ghost w-full text-center'}>{tier.cta}</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ TESTIMONIALS ═══ -->
+  <section id="testimonials" class="py-24 lg:py-32 dot-grid">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10">
+      <div class="text-center mb-16 reveal">
+        <p class="text-sm font-semibold text-teal tracking-wider uppercase mb-4">Testimonials</p>
+        <h2 class="text-3xl md:text-5xl font-bold tracking-tight">Loved by teams worldwide</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {testimonials.map((t, i) => (
+          <div class="glass-card p-8 reveal" style={`transition-delay: ${i * 0.1}s`}>
+            <p class="text-sm text-text-secondary leading-relaxed mb-6">"{t.quote}"</p>
+            <div class="flex items-center gap-3">
+              <img src={t.avatar} alt={t.name} class="w-10 h-10 rounded-full object-cover" width="80" height="80" loading="lazy" decoding="async" />
+              <div>
+                <p class="text-sm font-semibold">{t.name}</p>
+                <p class="text-xs text-text-tertiary">{t.title}, {t.company}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CTA ═══ -->
+  <section class="py-24 lg:py-32">
+    <div class="max-w-4xl mx-auto px-6 lg:px-10">
+      <div class="cta-gradient rounded-3xl p-12 md:p-20 text-center reveal">
+        <h2 class="text-3xl md:text-5xl font-bold tracking-tight mb-6 relative">Ready to make your team flow?</h2>
+        <p class="text-lg text-white/80 mb-10 relative">Join thousands of teams already shipping faster with Flowline.</p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 relative">
+          <a href="#pricing" class="btn-gradient bg-white/20 border border-white/30 hover:bg-white/30 shadow-none">Start Free Trial</a>
+          <a href="#" class="text-white/80 hover:text-white transition-colors text-sm font-medium">Book a Demo →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="border-t border-border py-16">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10">
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-10">
+        <div class="col-span-2 md:col-span-1">
+          <a href="#" class="text-lg font-bold tracking-tight flex items-center gap-2 mb-4">
+            <svg width="20" height="20" viewBox="0 0 32 32"><rect width="32" height="32" rx="8" fill="#8B5CF6"/><path d="M8 16h6l3-6 3 10 3-4h4" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Flowline
+          </a>
+          <p class="text-sm text-text-tertiary">Project management that flows.</p>
+        </div>
+        {footerCols.map(col => (
+          <div>
+            <h4 class="text-xs font-semibold tracking-wider uppercase text-text-secondary mb-4">{col.heading}</h4>
+            <ul class="space-y-3">
+              {col.links.map(link => (
+                <li><span class="text-sm text-text-tertiary hover:text-text-primary transition-colors cursor-default">{link}</span></li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+      <div class="mt-16 pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-text-tertiary">
+        <p>&copy; 2026 Flowline. All rights reserved.</p>
+        <div class="flex gap-6">
+          <span>Privacy</span>
+          <span>Terms</span>
+          <span>Security</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</Layout>
+
+<script>
+  // Nav scroll
+  const nav = document.getElementById('main-nav');
+  if (nav) {
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 20);
+    }, { passive: true });
+  }
+
+  // Mobile menu
+  const menuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  if (menuBtn && mobileMenu) {
+    menuBtn.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.contains('open');
+      mobileMenu.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+    });
+  }
+
+  // Product tabs
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const tabContents = document.querySelectorAll('.tab-content');
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.getAttribute('data-tab');
+      tabBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      tabContents.forEach(tc => {
+        if (tc.getAttribute('data-tab-content') === id) {
+          tc.classList.add('active');
+        } else {
+          tc.classList.remove('active');
+        }
+      });
+    });
+  });
+</script>

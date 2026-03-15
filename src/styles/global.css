@@ -63,12 +63,13 @@ h2 { letter-spacing: -0.02em; }
 
 @keyframes gradient-shift {
   0% { background-position: 0% 50%; }
-  100% { background-position: 200% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 .gradient-text-animated {
   background-size: 200% auto;
-  animation: gradient-shift 4s ease infinite;
+  animation: gradient-shift 6s ease-in-out infinite;
 }
 
 /* ══════════════════════════════════════════ */

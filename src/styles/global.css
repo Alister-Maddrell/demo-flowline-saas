@@ -1145,6 +1145,28 @@ section.relative.pt-36::before {
     padding-top: 6.5rem;
     padding-bottom: 3rem;
   }
+
+  /* Hero email form: stack vertically on mobile */
+  .hero-email-form {
+    flex-direction: column;
+    border-radius: 10px;
+  }
+
+  .hero-email-form input {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .hero-email-form button {
+    border-radius: 0 0 8px 8px;
+    width: 100%;
+    padding: 15px 20px;
+  }
+
+  /* Ghost / outline button full-width on mobile */
+  .btn-ghost {
+    width: 100%;
+    text-align: center;
+  }
 }
 
 /* ══════════════════════════════════════════ */
@@ -1184,6 +1206,35 @@ section.relative.pt-36::before {
 #pricing,
 #testimonials {
   position: relative;
+}
+
+/* ══════════════════════════════════════════ */
+/* REDUCED MOTION                            */
+/* ══════════════════════════════════════════ */
+
+/* ══════════════════════════════════════════ */
+/* FORM INPUT FOCUS POLISH                   */
+/* ══════════════════════════════════════════ */
+
+.hero-email-form input,
+.footer-newsletter input {
+  transition: background 0.25s ease, box-shadow 0.25s ease;
+}
+
+.hero-email-form input:focus,
+.footer-newsletter input:focus {
+  background: rgba(0, 212, 255, 0.03);
+}
+
+/* ══════════════════════════════════════════ */
+/* MOBILE OVERFLOW SAFETY                    */
+/* ══════════════════════════════════════════ */
+
+@media (max-width: 639px) {
+  /* Prevent horizontal overflow from any section content */
+  main, footer {
+    overflow-x: hidden;
+  }
 }
 
 /* ══════════════════════════════════════════ */

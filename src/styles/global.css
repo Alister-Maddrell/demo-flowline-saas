@@ -1238,6 +1238,27 @@ section.relative.pt-36::before {
 }
 
 /* ══════════════════════════════════════════
+   FULL HD VIEWPORT — Fill hero at 1920×1080
+   ══════════════════════════════════════════ */
+@media (min-width: 1200px) and (min-height: 960px) {
+  /* Hero — ensure text + stat cards sit well above fold, mockup peeks naturally */
+  section.relative.pt-36 {
+    padding-top: 10rem !important;
+    padding-bottom: 4rem !important;
+  }
+
+  /* Larger heading */
+  section.relative.pt-36 h1 {
+    font-size: clamp(3.5rem, 4vw + 1rem, 5rem);
+  }
+
+  /* Stat items more generous */
+  .stat-item {
+    padding: 52px 28px;
+  }
+}
+
+/* ══════════════════════════════════════════
    LAPTOP VIEWPORT — Tighter spacing for ≤900px height
    ══════════════════════════════════════════ */
 @media (min-width: 1024px) and (max-height: 900px) {

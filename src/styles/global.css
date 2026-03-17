@@ -813,12 +813,6 @@ p, li, span {
 /* ══════════════════════════════════════════ */
 
 /* Hero stat cards — premium treatment */
-.lg\:col-span-5 .bg-white,
-.lg\:col-span-5 .bg-surface,
-.lg\:col-span-5 .bg-ink {
-  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.35s;
-}
-
 .lg\:col-span-5 .bg-white {
   box-shadow:
     0 1px 3px rgba(0, 0, 0, 0.04),
@@ -827,7 +821,6 @@ p, li, span {
 }
 
 .lg\:col-span-5 .bg-white:hover {
-  transform: translateY(-2px);
   box-shadow:
     0 4px 12px rgba(0, 0, 0, 0.06),
     0 8px 32px rgba(0, 0, 0, 0.06);
@@ -839,7 +832,6 @@ p, li, span {
 }
 
 .lg\:col-span-5 .bg-ink:hover {
-  transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(12, 12, 12, 0.25);
 }
 
@@ -849,7 +841,6 @@ p, li, span {
 }
 
 .lg\:col-span-5 .bg-surface:hover {
-  transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
 }
 
@@ -1093,6 +1084,106 @@ footer {
     padding-top: 9rem;
     padding-bottom: 9rem;
   }
+}
+
+/* ══════════════════════════════════════════ */
+/* HERO GRADIENT WASH                        */
+/* ══════════════════════════════════════════ */
+
+section.relative.pt-36::before {
+  content: '';
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 900px;
+  height: 600px;
+  background: radial-gradient(ellipse at center, rgba(0, 212, 255, 0.06) 0%, rgba(0, 212, 255, 0.02) 40%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ══════════════════════════════════════════ */
+/* BETA BADGE PULSE                          */
+/* ══════════════════════════════════════════ */
+
+@keyframes beta-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.3); }
+}
+
+.beta-badge-dot {
+  animation: beta-pulse 2s ease-in-out infinite;
+}
+
+/* ══════════════════════════════════════════ */
+/* STATS CARDS ENHANCEMENTS                  */
+/* ══════════════════════════════════════════ */
+
+.lg\:col-span-5 .bg-ink {
+  background: linear-gradient(135deg, #0C0C0C 0%, #1a1a2e 60%, #16213e 100%);
+}
+
+.lg\:col-span-5 .bg-white,
+.lg\:col-span-5 .bg-surface,
+.lg\:col-span-5 .bg-ink {
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.35s;
+}
+
+.lg\:col-span-5 .bg-white:hover,
+.lg\:col-span-5 .bg-surface:hover,
+.lg\:col-span-5 .bg-ink:hover {
+  transform: translateY(-3px) scale(1.015);
+}
+
+/* ══════════════════════════════════════════ */
+/* MOBILE HERO SPACING                       */
+/* ══════════════════════════════════════════ */
+
+@media (max-width: 639px) {
+  section.relative.pt-36 {
+    padding-top: 6.5rem;
+    padding-bottom: 3rem;
+  }
+}
+
+/* ══════════════════════════════════════════ */
+/* PRODUCT SHOWCASE GLOW                     */
+/* ══════════════════════════════════════════ */
+
+#showcase .product-mockup {
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.04),
+    0 16px 48px rgba(0, 0, 0, 0.08),
+    0 32px 80px rgba(0, 0, 0, 0.04),
+    0 0 80px rgba(0, 212, 255, 0.06),
+    0 0 160px rgba(0, 212, 255, 0.03);
+}
+
+/* ══════════════════════════════════════════ */
+/* SECTION TRANSITION DIVIDERS               */
+/* ══════════════════════════════════════════ */
+
+#features::before,
+#showcase::before,
+#pricing::before,
+#testimonials::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+  pointer-events: none;
+}
+
+#features,
+#showcase,
+#pricing,
+#testimonials {
+  position: relative;
 }
 
 /* ══════════════════════════════════════════ */

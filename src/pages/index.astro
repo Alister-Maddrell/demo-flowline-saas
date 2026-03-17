@@ -390,15 +390,53 @@ const footerCols = [
   </section>
 
   <!-- ═══ CTA ═══ -->
-  <section class="py-24 lg:py-32">
-    <div class="max-w-4xl mx-auto px-6 lg:px-10">
-      <div class="cta-gradient rounded-[2px] p-12 md:p-20 text-center reveal">
-        <h2 class="text-3xl md:text-5xl font-bold mb-6 relative text-white">Ready to make your team flow?</h2>
-        <p class="text-base text-white/70 mb-4 relative">Join thousands of teams already shipping faster with Flowline.</p>
-        <p class="text-xs font-mono text-white/40 mb-10 relative uppercase tracking-wider">Join 10,000+ teams already using Flowline</p>
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 relative">
-          <a href="#" class="btn-accent">Get Started Free</a>
-          <a href="#" class="text-white/60 hover:text-white transition-colors text-sm font-medium">Book a Demo &rarr;</a>
+  <section class="cta-final relative overflow-hidden reveal">
+    <!-- Geometric background elements -->
+    <div class="cta-final-bg" aria-hidden="true">
+      <div class="cta-grid-overlay"></div>
+      <div class="cta-glow cta-glow-1"></div>
+      <div class="cta-glow cta-glow-2"></div>
+      <div class="cta-corner cta-corner-tl"></div>
+      <div class="cta-corner cta-corner-br"></div>
+    </div>
+
+    <div class="max-w-5xl mx-auto px-6 lg:px-10 relative z-10">
+      <div class="cta-final-inner">
+        <!-- Overline -->
+        <p class="cta-overline font-mono text-xs uppercase tracking-[0.25em] mb-8">
+          <span class="cta-overline-dot"></span>
+          The last tool you'll ever need
+        </p>
+
+        <!-- Headline — split for dramatic sizing -->
+        <h2 class="cta-headline font-heading font-bold leading-[0.95] tracking-[-0.05em] mb-8">
+          <span class="block">Stop managing.</span>
+          <span class="block cta-headline-accent">Start flowing.</span>
+        </h2>
+
+        <!-- Subtext -->
+        <p class="text-base md:text-lg text-white/55 max-w-md mb-12 leading-relaxed">
+          Free for teams up to 10. No credit card required. Set up in under 2 minutes.
+        </p>
+
+        <!-- Actions -->
+        <div class="flex flex-col sm:flex-row items-start gap-4 mb-16">
+          <a href="#" class="btn-accent cta-btn-glow">
+            Get Started Free
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="ml-1"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="#" class="cta-demo-link text-white/50 hover:text-white text-sm font-medium transition-colors">
+            Book a Demo &rarr;
+          </a>
+        </div>
+
+        <!-- Trust strip -->
+        <div class="cta-trust-strip flex flex-wrap items-center gap-x-8 gap-y-3">
+          <span class="text-white/30 text-xs font-mono uppercase tracking-wider">10,000+ teams</span>
+          <span class="text-white/15">|</span>
+          <span class="text-white/30 text-xs font-mono uppercase tracking-wider">99.9% uptime</span>
+          <span class="text-white/15">|</span>
+          <span class="text-white/30 text-xs font-mono uppercase tracking-wider">SOC 2 certified</span>
         </div>
       </div>
     </div>

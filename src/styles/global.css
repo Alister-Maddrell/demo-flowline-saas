@@ -406,7 +406,7 @@ p, li, span {
 .hero-email-form {
   display: flex;
   max-width: 480px;
-  margin: 0 auto;
+  margin: 0;
   background: white;
   border: 1.5px solid var(--color-border);
   border-radius: 10px;
@@ -1323,6 +1323,24 @@ section.relative.pt-36::before {
     padding-top: 2.5rem;
     padding-bottom: 2.5rem;
   }
+}
+
+/* ══════════════════════════════════════════ */
+/* FEATURE GRID HEADING COLOR FIX            */
+/* ══════════════════════════════════════════ */
+
+#features .glass-card h3 {
+  color: var(--color-ink);
+}
+
+/* ══════════════════════════════════════════ */
+/* CTA BUTTON ALIGNMENT FIX                  */
+/* ══════════════════════════════════════════ */
+
+.cta-gradient .btn-accent {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* ══════════════════════════════════════════ */

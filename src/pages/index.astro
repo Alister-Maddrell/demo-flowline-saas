@@ -94,31 +94,57 @@ const footerCols = [
 <Layout title="Flowline — Project Management That Flows">
 
   <!-- ═══ NAV ═══ -->
-  <nav class="nav-saas" id="main-nav">
-    <div class="max-w-6xl mx-auto px-6 lg:px-10">
-      <div class="flex items-center justify-between h-16">
-        <a href="#" class="font-heading text-base font-bold tracking-tight flex items-center gap-2.5">
-          <svg width="22" height="22" viewBox="0 0 32 32"><rect width="32" height="32" rx="2" fill="#0C0C0C"/><path d="M8 16h6l3-6 3 10 3-4h4" stroke="#00D4FF" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <span class="tracking-[-0.03em]">Flowline</span>
+  <div class="nav-float-wrap" id="nav-float-wrap">
+    <nav class="nav-float" id="main-nav">
+      <!-- Animated border glow -->
+      <div class="nav-float-border" aria-hidden="true"></div>
+
+      <div class="nav-float-inner">
+        <!-- Logo -->
+        <a href="#" class="nav-float-logo">
+          <svg width="20" height="20" viewBox="0 0 32 32"><rect width="32" height="32" rx="4" fill="#00D4FF"/><path d="M8 16h6l3-6 3 10 3-4h4" stroke="#0C0C0C" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Flowline</span>
         </a>
-        <div class="hidden md:flex items-center gap-10">
-          {navLinks.map(l => <a href={l.href} class="nav-link-saas">{l.label}</a>)}
-          <a href="#" class="nav-link-saas">Log in</a>
-          <a href="#" class="btn-gradient text-sm py-2 px-5">Start Free</a>
+
+        <!-- Center links (desktop) -->
+        <div class="nav-float-links hidden md:flex">
+          <div class="nav-float-pill-track" id="nav-pill-track">
+            <div class="nav-float-pill" id="nav-pill"></div>
+          </div>
+          {navLinks.map(l => <a href={l.href} class="nav-float-link" data-nav-link>{l.label}</a>)}
         </div>
-        <button class="md:hidden p-2 text-ink-tertiary" id="mobile-menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+
+        <!-- Right actions (desktop) -->
+        <div class="nav-float-actions hidden md:flex">
+          <a href="#" class="nav-float-login">Log in</a>
+          <a href="#" class="nav-float-cta">
+            Start Free
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+
+        <!-- Mobile hamburger -->
+        <button class="nav-float-burger md:hidden" id="mobile-menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+          <span class="burger-line burger-line-1"></span>
+          <span class="burger-line burger-line-2"></span>
+          <span class="burger-line burger-line-3"></span>
         </button>
       </div>
-      <div class="mobile-menu-saas md:hidden" id="mobile-menu">
-        <div class="pb-4 flex flex-col gap-3">
-          {navLinks.map(l => <a href={l.href} class="nav-link-saas py-2">{l.label}</a>)}
-          <a href="#" class="nav-link-saas py-2">Log in</a>
-          <a href="#" class="btn-gradient text-sm py-2 px-5 text-center mt-2">Start Free</a>
+
+      <!-- Mobile dropdown -->
+      <div class="nav-float-mobile md:hidden" id="mobile-menu">
+        <div class="nav-float-mobile-inner">
+          {navLinks.map(l => <a href={l.href} class="nav-float-mobile-link">{l.label}</a>)}
+          <div class="nav-float-mobile-divider"></div>
+          <a href="#" class="nav-float-mobile-link">Log in</a>
+          <a href="#" class="nav-float-cta nav-float-cta-mobile">
+            Start Free
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
         </div>
       </div>
-    </div>
-  </nav>
+    </nav>
+  </div>
 
   <main id="main-content">
 
@@ -496,22 +522,41 @@ const footerCols = [
 </Layout>
 
 <script>
-  // Nav scroll
-  const nav = document.getElementById('main-nav');
-  if (nav) {
+  // Nav scroll — toggle .scrolled on wrapper
+  const navWrap = document.getElementById('nav-float-wrap');
+  if (navWrap) {
     window.addEventListener('scroll', () => {
-      nav.classList.toggle('scrolled', window.scrollY > 20);
+      navWrap.classList.toggle('scrolled', window.scrollY > 30);
     }, { passive: true });
   }
 
-  // Mobile menu
+  // Mobile menu — burger animation
   const menuBtn = document.getElementById('mobile-menu-btn');
   const mobileMenu = document.getElementById('mobile-menu');
-  if (menuBtn && mobileMenu) {
+  const navFloat = document.getElementById('main-nav');
+  if (menuBtn && mobileMenu && navFloat) {
     menuBtn.addEventListener('click', () => {
       const isOpen = mobileMenu.classList.contains('open');
       mobileMenu.classList.toggle('open');
+      menuBtn.classList.toggle('open');
+      navFloat.classList.toggle('mobile-open');
       menuBtn.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+    });
+  }
+
+  // Sliding pill hover on nav links
+  const navLinks = document.querySelectorAll('[data-nav-link]');
+  const pill = document.getElementById('nav-pill');
+  if (pill && navLinks.length) {
+    const linksContainer = pill.closest('.nav-float-links');
+    navLinks.forEach(link => {
+      link.addEventListener('mouseenter', () => {
+        const linkEl = link as HTMLElement;
+        const containerRect = linksContainer!.getBoundingClientRect();
+        const linkRect = linkEl.getBoundingClientRect();
+        pill.style.left = (linkRect.left - containerRect.left) + 'px';
+        pill.style.width = linkRect.width + 'px';
+      });
     });
   }
 

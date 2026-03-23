@@ -1552,8 +1552,23 @@ section.relative.pt-36::before {
 
 @media (max-width: 639px) {
   section.relative.pt-36 {
-    padding-top: 6.5rem;
+    padding-top: 4.5rem;
     padding-bottom: 3rem;
+  }
+
+  /* Tighten hero badge-to-heading gap on mobile */
+  section.relative.pt-36 .mb-8 {
+    margin-bottom: 1.25rem;
+  }
+
+  /* Tighten heading-to-paragraph gap */
+  section.relative.pt-36 h1.mb-6 {
+    margin-bottom: 1rem;
+  }
+
+  /* Tighten paragraph-to-CTA gap */
+  section.relative.pt-36 p.mb-10 {
+    margin-bottom: 1.75rem;
   }
 
   /* Hero email form: stack vertically on mobile */

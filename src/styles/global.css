@@ -1090,41 +1090,7 @@ p, li, span {
   font-weight: 600;
 }
 
-/* ══════════════════════════════════════════ */
-/* HERO STAT CARDS                           */
-/* ══════════════════════════════════════════ */
-
-/* Hero stat cards — premium treatment */
-.lg\:col-span-5 .bg-white {
-  box-shadow:
-    0 1px 3px rgba(0, 0, 0, 0.04),
-    0 4px 16px rgba(0, 0, 0, 0.04);
-  border-radius: 10px;
-}
-
-.lg\:col-span-5 .bg-white:hover {
-  box-shadow:
-    0 4px 12px rgba(0, 0, 0, 0.06),
-    0 8px 32px rgba(0, 0, 0, 0.06);
-}
-
-.lg\:col-span-5 .bg-ink {
-  border-radius: 10px;
-  box-shadow: 0 4px 16px rgba(12, 12, 12, 0.2);
-}
-
-.lg\:col-span-5 .bg-ink:hover {
-  box-shadow: 0 8px 24px rgba(12, 12, 12, 0.25);
-}
-
-.lg\:col-span-5 .bg-surface {
-  border-radius: 10px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
-}
-
-.lg\:col-span-5 .bg-surface:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-}
+/* Hero stat cards — styles now in .hero-stat-* classes below */
 
 /* ══════════════════════════════════════════ */
 /* CTA FINAL SECTION                         */
@@ -1527,23 +1493,68 @@ section.relative.pt-36::before {
 }
 
 /* ══════════════════════════════════════════ */
-/* STATS CARDS ENHANCEMENTS                  */
+/* HERO GLASS CONTAINER                      */
 /* ══════════════════════════════════════════ */
 
-.lg\:col-span-5 .bg-ink {
-  background: linear-gradient(135deg, #0C0C0C 0%, #1a1a2e 60%, #16213e 100%);
+.hero-glass-container {
+  background: rgba(255, 255, 255, 0.45);
+  border: 1px solid var(--color-border-light);
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.02),
+    0 4px 16px rgba(0, 0, 0, 0.03),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 
-.lg\:col-span-5 .bg-white,
-.lg\:col-span-5 .bg-surface,
-.lg\:col-span-5 .bg-ink {
+/* ══════════════════════════════════════════ */
+/* HERO STAT CARDS — Unified                 */
+/* ══════════════════════════════════════════ */
+
+.hero-stats-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.hero-stat-card {
+  border-radius: 10px;
+  padding: 1.25rem 1.5rem;
   transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.35s;
 }
 
-.lg\:col-span-5 .bg-white:hover,
-.lg\:col-span-5 .bg-surface:hover,
-.lg\:col-span-5 .bg-ink:hover {
-  transform: translateY(-3px) scale(1.015);
+.hero-stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+.hero-stat-primary {
+  background: white;
+  border: 1px solid var(--color-border);
+  padding: 1.5rem;
+}
+
+.hero-stat-light {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-light);
+}
+
+.hero-stat-dark {
+  background: linear-gradient(135deg, #0C0C0C 0%, #1a1a2e 60%, #16213e 100%);
+  border: none;
+}
+
+.hero-stat-label-light {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.5);
 }
 
 /* ══════════════════════════════════════════ */
@@ -1554,6 +1565,12 @@ section.relative.pt-36::before {
   section.relative.pt-36 {
     padding-top: 4.5rem;
     padding-bottom: 3rem;
+  }
+
+  /* Glass container: tighter on mobile */
+  .hero-glass-container {
+    padding: 1.5rem 1.25rem;
+    border-radius: 12px;
   }
 
   /* Tighten hero badge-to-heading gap on mobile */
@@ -1591,6 +1608,15 @@ section.relative.pt-36::before {
   .btn-ghost {
     width: 100%;
     text-align: center;
+  }
+
+  /* Stat cards: compact on mobile */
+  .hero-stat-card {
+    padding: 1rem 1.25rem;
+  }
+
+  .hero-stat-primary {
+    padding: 1.25rem;
   }
 }
 

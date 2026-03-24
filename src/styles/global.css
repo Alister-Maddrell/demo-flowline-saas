@@ -1686,6 +1686,11 @@ section.relative.pt-36::before {
   main, footer {
     overflow-x: hidden;
   }
+
+  /* Hide decorative glow effects that overflow narrow viewports */
+  .cta-glow {
+    display: none;
+  }
 }
 
 /* ══════════════════════════════════════════
